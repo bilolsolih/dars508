@@ -1,0 +1,30 @@
+POST http://localhost:8000/users/register
+Content-Type: application/json
+
+{
+  "fullName": "SolihCoder",
+  "login": "SolihCoder",
+  "password": "123"
+}
+
+###
+
+POST http://localhost:8000/users/login
+Content-Type: application/json
+
+{
+  "login": "SolihCoder",
+  "password": "123"
+}
+
+###
+
+DELETE http://localhost:8000/books/delete/1
+Login: SolihCoder
+Password: 123
+
+###
+GET http://localhost:8000/books
+Login: SolihCoder
+Password: 123
+
