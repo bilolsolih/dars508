@@ -20,11 +20,30 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8000/books/delete/1
-Login: SolihCoder
-Password: 123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzgxNzg2NjY2LCJleHAiOjE3ODE3OTAyNjZ9.CqejCXZsmgDtp0VeR2eAX4iW-xdfBqPXhi76Q4iL6jk
 
 ###
 GET http://localhost:8000/books
-Login: SolihCoder
-Password: 123
+
+###
+
+POST http://localhost:8000/book-categories/create
+Content-Type: application/json
+
+{
+  "title": "tarix"
+}
+
+###
+
+PATCH http://localhost:8000/book-categories/update/2
+Content-Type: application/json
+
+{
+  "title": "Tarix"
+}
+
+###
+
+GET http://localhost:8000/book-categories/list?page=2&size=3&search=a
 

@@ -1,19 +1,36 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { User } from '../../features/auth/entities/user.entity';
-import argon2 from 'argon2';
+import {CanActivate, ExecutionContext, Injectable, UnauthorizedException} from '@nestjs/common';
+import {JwtService} from '@nestjs/jwt';
+import {Reflector} from "@nestjs/core";
+import {RolesKey} from "../decorators/roles.decorator";
+import {Role} from "../enums/role.enum";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly reflector: Reflector,
+  ) {
+  }
+
   async canActivate(context: ExecutionContext) {
     const req = context.switchToHttp().getRequest();
 
-    if (!req.headers.login || !req.headers.password)
-      return false;
+    const roles: Role[] = this.reflector.getAllAndOverride(RolesKey, [context.getHandler(), context.getClass()]);
+    if (!roles)
+      return true;
 
-    const user = await User.findOneBy({ login: String(req.headers.login) });
-    if (!user)
-      return false;
+    if (!req.headers.authorization)
+      throw new UnauthorizedException();
 
-    return await argon2.verify(user.password, String(req.headers.password));
+    const [bearer, token] = req.headers.authorization.split(' ');
+    if (!bearer || !token)
+      throw new UnauthorizedException();
+
+    try {
+      req.user = this.jwtService.verify(token);
+      return true
+    } catch (error) {
+      throw new UnauthorizedException();
+    }
   }
 }

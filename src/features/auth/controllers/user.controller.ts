@@ -20,3 +20,5 @@ export class UserController {
     return await this.service.login(payload);
   }
 }
+
+// JWT - JSON Web Token
