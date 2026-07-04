@@ -7,6 +7,7 @@ import {LibraryModule} from './features/library/library.module';
 import {APP_GUARD} from "@nestjs/core";
 import {AuthGuard} from "./core/guards/auth.guard";
 import {RoleGuard} from "./core/guards/role.guard";
+import {CommonModule} from "./features/common/common.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import {RoleGuard} from "./core/guards/role.guard";
       },
     }),
     AuthModule,
+    CommonModule,
     LibraryModule,
   ],
   providers: [

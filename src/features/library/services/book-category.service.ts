@@ -1,5 +1,5 @@
 import {BadRequestException, Injectable, NotFoundException} from "@nestjs/common";
-import {PaginationFilters} from "../../common/pagination.filter";
+import {PaginationFilters} from "../../common/dtos/pagination.filter";
 import {Not} from "typeorm";
 import {BookCategory} from "../entities/book-category.entity";
 import {plainToInstance} from "class-transformer";

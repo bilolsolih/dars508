@@ -1,13 +1,13 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {Type as NestType} from '@nestjs/common'
 
-export class PaginatedResult<T> {
+export class PaginatedResult {
   totalCount: number;
   totalPages: number;
   currentPage: number;
   hasPrevious: boolean;
   hasNext: boolean;
-  data: T[];
+  data: any;
 }
 
 

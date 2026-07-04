@@ -1,7 +1,7 @@
 import {BookCategory} from "../entities/book-category.entity";
 import {FindOptionsOrder, FindOptionsWhere, ILike} from "typeorm";
 import {Injectable} from "@nestjs/common";
-import {PaginationFilters} from "../../common/pagination.filter";
+import {PaginationFilters} from "../../common/dtos/pagination.filter";
 import {PaginatedResult} from "../../common/dtos/paginated-result.dto";
 import {BookCategoryListDto} from "../dtos/book-category/book-category.list.dto";
 import {BaseRepository} from "../../common/repositories/base.repository";

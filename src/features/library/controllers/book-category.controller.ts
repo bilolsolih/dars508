@@ -3,7 +3,7 @@ import {BookCategoryCreateDto} from '../dtos/book-category/book-category.create.
 import {BookCategoryUpdateDto} from '../dtos/book-category/book-category.update.dto';
 import {ApiBearerAuth, ApiOkResponse} from '@nestjs/swagger';
 import {BookCategoryListDto} from '../dtos/book-category/book-category.list.dto';
-import {PaginationFilters} from "../../common/pagination.filter";
+import {PaginationFilters} from "../../common/dtos/pagination.filter";
 import {PaginatedResultDto} from "../../common/dtos/paginated-result.dto";
 import {BookCategoryService} from "../services/book-category.service";
 import {Roles} from "../../../core/decorators/roles.decorator";

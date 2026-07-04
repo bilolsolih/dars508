@@ -1,9 +1,10 @@
 import {BaseModel} from "../../../core/base.model";
 import {FindOptionsWhere, Repository} from "typeorm";
-import {PaginationFilters} from "../pagination.filter";
+import {PaginationFilters} from "../dtos/pagination.filter";
+import {PaginatedResult} from "../dtos/paginated-result.dto";
 
-export class BaseRepository<T extends BaseModel> {
-  constructor(private repo: Repository<T>) {
+export abstract class BaseRepository<T extends BaseModel> {
+  constructor(protected repo: Repository<T>) {
   }
 
   async getAll(filters: PaginationFilters, where: FindOptionsWhere<T> = {}) {
@@ -22,6 +23,6 @@ export class BaseRepository<T extends BaseModel> {
       skip: skip,
     });
 
-    return {totalCount, totalPages, data, hasPrevious, hasNext, currentPage};
+    return {totalCount, totalPages, data, hasPrevious, hasNext, currentPage} as PaginatedResult;
   }
 }
