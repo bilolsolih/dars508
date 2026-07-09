@@ -3,7 +3,7 @@ import {LanguageAdminController} from "./controllers/language/language.admin.con
 import {LanguageAdminService} from "./services/language/language.admin.service";
 import {LanguageRepository} from "./repositories/language.repository";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {Language} from "./entities/language.entity";
+import {Language} from "../shared/entities/language.entity";
 
 @Module({
   imports: [

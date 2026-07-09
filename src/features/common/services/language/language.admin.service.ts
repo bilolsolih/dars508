@@ -1,11 +1,12 @@
-import {Injectable, NotFoundException} from "@nestjs/common";
+import {ConflictException, Injectable, NotFoundException} from "@nestjs/common";
 import {PaginationFilters} from "../../dtos/pagination.filter";
 import {LanguageRepository} from "../../repositories/language.repository";
 import {plainToInstance} from "class-transformer";
 import {LanguageListXDto} from "../../dtos/language/admin/language.list.dto";
 import {LanguageCreateXDto} from "../../dtos/language/admin/language.create.dto";
-import {Language} from "../../entities/language.entity";
+import {Language} from "../../../shared/entities/language.entity";
 import {LanguageUpdateXDto} from "../../dtos/language/admin/language.update.dto";
+import {ILike} from "typeorm";
 
 @Injectable()
 export class LanguageAdminService {
@@ -13,6 +14,14 @@ export class LanguageAdminService {
   }
 
   async create(payload: LanguageCreateXDto) {
+    const titleExists = await Language.existsBy({title: ILike(payload.title)});
+    if (titleExists)
+      throw new ConflictException('Title already exists');
+
+    const codeExists = await Language.existsBy({code: ILike(payload.code)});
+    if (codeExists)
+      throw new ConflictException('Code already exists');
+
     const newLanguage = {title: payload.title, code: payload.code} as Language;
     return await this.repo.save(newLanguage);
   }

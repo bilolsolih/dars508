@@ -1,5 +1,5 @@
 import {BaseRepository} from "./base.repository";
-import {Language} from "../entities/language.entity";
+import {Language} from "../../shared/entities/language.entity";
 import {PaginationFilters} from "../dtos/pagination.filter";
 import {FindOptionsWhere, ILike, Repository} from "typeorm";
 import {Injectable} from "@nestjs/common";
