@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-import {Role} from "../../../core/enums/role.enum";
+import {Role} from "@/core/enums/role.enum";
 
 @Entity('users')
 export class User extends BaseEntity {
